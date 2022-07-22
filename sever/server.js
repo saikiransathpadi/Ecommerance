@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const multer = require("multer")();
 const userController = require("./user/routes/user");
+const orderController= require("./user/routes/order");
 const app = express();
 
 // server
@@ -15,6 +17,8 @@ app.listen(3001, (err)=>{
 // body parser middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
+app.use(multer.array());
+
 
 // Database Connection
 mongoose.connect("mongodb://localhost/ecommerance",(data)=>{
@@ -31,3 +35,4 @@ app.get("/",(req,res)=>{
 
 // middleware
 app.use("/user",userController)
+app.use("/order",orderController)
