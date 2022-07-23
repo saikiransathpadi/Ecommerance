@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const multer = require("multer")();
 const userController = require("./user/routes/user");
 const orderController= require("./user/routes/order");
+const cartController = require("./user/routes/cart");
+const itemController =require("./user/routes/item");
 const app = express();
 
 // server
@@ -36,3 +38,5 @@ app.get("/",(req,res)=>{
 // middleware
 app.use("/user",userController)
 app.use("/order",orderController)
+app.use("/cart",cartController)
+app.use("/item",itemController)
