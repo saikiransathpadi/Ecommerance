@@ -5,8 +5,8 @@ const itemSchema = mongoose.Schema({
     item_id: String,
     item_catogery:String,
     item_image: String,
-    actual_price: String,
-    discounted_price: string
+    actual_price: Number,
+    discounted_price: Number
 })
 
 

@@ -9,3 +9,6 @@ router.post("/",(req,res)=>{
         res.status(200).send({item : itemData})
     })
 })
+
+
+module.exports = router;
