@@ -4,22 +4,18 @@ const signupModal =require("../modals/signup-modal")
 const {checkExistingUser, generatePasswordHash} = require("./utility")
 const bcrpyt = require("bcryptjs")
 const Jwt = require("jsonwebtoken")
-const crypto = require("crypto")
 
-const salt =10;
-
-const secertkey = crypto.randomBytes(64).toString("hex");
 
 const router = express.Router();
 
 router.post("/signup", async (req,res)=>{
-    console.log(req.body)
+    //console.log(req.body)
     if(await checkExistingUser (req.body.username)){
         res.status(400).send("username exists. Please try with different username");
     }else{
         let username= req.body.username;
         generatePasswordHash(req.body.password).then((passwordHash)=>{
-            signupModal.create({username:req.body.username,phone_number:req.body.phoneNumber,
+            signupModal.create({username:req.body.username,phone_number:req.body.phone_number,
                             email_id: req.body.email_id,password: passwordHash}).then(()=>{
                                 res.send(`${username} added succesfully`)
                             // res.status(200).json({
@@ -27,7 +23,7 @@ router.post("/signup", async (req,res)=>{
                             //     message: "Successfully added", username: username
                             // })
                         }).catch((err)=>{
-                            console.log(err)
+                            //console.log(err)
                             res.status(400).send(err.message)
                         })
         })
@@ -37,10 +33,12 @@ router.post("/signup", async (req,res)=>{
 
 router.post("/login",(req,res)=>{
     signupModal.find({username: req.body.username}).then((userData)=>{
+        //console.log(userData[0].password,req.body.password)
+       // console.log(process.env.secertkey)
         if(userData.length){
             bcrpyt.compare(req.body.password,userData[0].password).then((val)=>{
                 if(val){
-                    const authToken = Jwt.sign(userData[0].username,secertkey);
+                    const authToken = Jwt.sign(userData[0].username, process.env.secertkey);
                     res.status(200).send({authToken});
                 }else{
                     res.status(400).send("Invalid password")

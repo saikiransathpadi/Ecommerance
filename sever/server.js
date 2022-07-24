@@ -6,6 +6,8 @@ const orderController= require("./user/routes/order");
 const cartController = require("./user/routes/cart");
 const itemController =require("./user/routes/item");
 const app = express();
+const cors = require("cors");
+require("dotenv").config();
 
 // server
 app.listen(3001, (err)=>{
@@ -20,6 +22,7 @@ app.listen(3001, (err)=>{
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 app.use(multer.array());
+app.use(cors());
 
 
 // Database Connection
