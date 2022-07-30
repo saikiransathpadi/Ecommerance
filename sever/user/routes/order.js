@@ -5,8 +5,13 @@ const orderModal = require("../modals/order-modal")
 const router = express.Router();
 
 router.get("/",(req,res)=>{
-    console.log(req.headers,process.env.secertkey)
-    Jwt.verify(req.headers.authToken,process.env.secertkey)
+    try{
+    //console.log(req.headers,process.env.secertkey)
+        const user=Jwt.verify(req.headers.authtoken,process.env.secertkey);
+        res.status(200).send(user)
+    }catch(err){
+        res.status(400).send("User Not Autherized",err.message)
+    }
 
 })
 
