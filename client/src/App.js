@@ -1,19 +1,26 @@
-import Signup  from "./components/signup/signup"
 import Login from "./components/login/login";
-import {BrowserRouter,Routes,Route} from "react-router-dom"
-
-const  App=()=> {
+import Signup from "./components/signup/signup";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Logout from "./components/logout/logout";
+import Orders from "./components/orders/order";
+import Protected from "./components/protected-route/protected";
+import Items from "./components/item-list/items";
+import Cart from "./components/cart/cart";
+const App = ()=> {
   return (
     <>
-     Client server is UP;
-     <BrowserRouter>
-       <Routes>
-        <Route path="/Signup" element={<Signup/>}></Route>
-        <Route path="/Login" element={<Login/>}></Route>
-       </Routes>
-     </BrowserRouter>
+      Ecommerce App works
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signup" element={<Signup/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/logout" element={<Logout/>}></Route>
+          <Route path="/items" element={<Items/>}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
+          <Route path="/orders" element={<Protected><Orders/></Protected>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
-  );
+  )
 }
-
 export default App;
