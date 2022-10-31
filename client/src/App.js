@@ -4,7 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Logout from "./components/logout/logout";
 import Orders from "./components/orders/order";
 import Protected from "./components/protected-route/protected";
-import Items from "./components/item-list/items";
+import Items from "./components/item-list/item";
 import Cart from "./components/cart/cart";
 const App = ()=> {
   return (

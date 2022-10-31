@@ -34,7 +34,7 @@ app.use(cors());
 
 
 // Database Connection
-mongoose.connect("mongodb://localhost/ecommerance",(data)=>{
+mongoose.connect("mongodb://localhost/ecommerce",(data)=>{
     console.log("Succesfully connected to db")
 
 },(err)=>{
